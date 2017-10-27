@@ -118,11 +118,19 @@ void Met3A(string Code, vector<string*>* vFechas) {
 		for (int i = 0;i<=3;i++) {
 			Ano += Code.at(i);
 		}
-		for (int i = 4;i<=5;i++) {
-			Mes += Code.at(i);
+		if (stoi(Mes)<=12) {
+			for (int i = 4;i<=5;i++) {
+				Mes += Code.at(i);	
+			}
+		} else {
+			Mes += "00";
 		}
-		for (int i = 6; i <= 7; i++) {
-			Dia += Code.at(i);
+		if (stoi(Dia)<=31) {
+			for (int i = 6; i <= 7; i++) {
+				Dia += Code.at(i);
+			}
+		} else {
+			Dia += "00";
 		}
 		string* Date = new string[3];
 		Date[0]  = Ano;
