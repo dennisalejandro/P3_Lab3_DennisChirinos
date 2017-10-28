@@ -114,21 +114,39 @@ void Met3A(string Code, vector<string*>* vFechas) {
 	string Ano;
 	string Mes;
 	string Dia;
+	bool pushIt = true;
 	if (Code.size() == 8) {
 		for (int i = 0;i<=3;i++) {
 			Ano += Code.at(i);
 		}
+        cout << "Año: " << Ano << "\n";
 		for (int i = 4;i<=5;i++) {
-			Mes += Code.at(i);	
+			Mes += Code.at(i);
 		}
+		cout << "Mes: " << Mes << "\n";
 		for (int i = 6; i <= 7; i++) {
 			Dia += Code.at(i);
 		}
+        cout << "Dia: " << Dia << "\n";
 		string* Date = new string[3];
 		Date[0]  = Ano;
-		Date[1]  = Mes;
-		Date[2]  = Dia;
-		vFechas->push_back(Date);
+		if (stoi(Mes)<=12) {
+			Date[1]  = Mes;
+		} else {
+			Date[1] = "00";
+			pushIt = false;
+		}
+		if (stoi(Dia)<=31) {
+			Date[2]  = Dia;
+		} else {
+			Date[2] = "00";
+			pushIt = false;
+		}
+		if (pushIt) {
+			vFechas->push_back(Date);
+		} else {
+			cout << "No se pudo Agregar, error en el codigo \n";
+		}
 	}
 }
 void Met3B(vector<string*>* vFechas) {
